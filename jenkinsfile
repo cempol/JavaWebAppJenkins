@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    environment {
+        TOMCAT_HOME = '/var/lib/tomcat9'  
+        WAR_FILE = 'target/*.war'        
+    }
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/cempol/MyJaveRepoWebJenkins.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('Deploy to Tomcat') {
+            steps {
+                sh '''
+                if [ ! -d $TOMCAT_HOME/webapps ]; then
+                    echo "webapps directory does not exist!"
+                    exit 1
+                fi
+                rm -rf $TOMCAT_HOME/webapps/myappJenkins.war
+                cp $WAR_FILE $TOMCAT_HOME/webapps/myappJenkins.war
+                '''
+            }
+        }
+    }
+}
