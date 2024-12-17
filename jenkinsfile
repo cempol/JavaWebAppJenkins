@@ -22,8 +22,8 @@ pipeline {
                     echo "webapps directory does not exist!"
                     exit 1
                 fi
-                rm -rf $TOMCAT_HOME/webapps/myappJenkins.war
-                cp $WAR_FILE $TOMCAT_HOME/webapps/myappJenkins.war
+                rm -rf $TOMCAT_HOME/webapps/myappGitHubActions.war
+                cp $WAR_FILE $TOMCAT_HOME/webapps/myappGitHubActions.war
                 '''
             }
         }
