@@ -10,6 +10,6 @@ jobs:
     steps:
       - name: Trigger Jenkins Job
         run: |
-          curl -X POST "http://13.200.233.168:8080//job/A3_Deploy_To_Tomacat_Freestyle_GitHubAction>/build?token=${{ secrets.urltoken }}" \
-          --user "admin:${{ secrets.admintoken }}"
+          curl -X POST "http://13.203.70.100:8080/job/A3_Jenkins_Pipeline_For_GithubAction/build?token=${{ secrets.url_token }}" \
+          --user "admin:${{ secrets.admin_token }}"
 
